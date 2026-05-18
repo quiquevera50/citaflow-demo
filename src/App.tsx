@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { FormEvent } from 'react'
 import './App.css'
 
@@ -88,7 +89,428 @@ const appointments = [
   },
 ]
 
+
+const demoServices = [
+  {
+    title: 'Consulta inicial',
+    duration: '30 min',
+    price: 'Desde 25€',
+  },
+  {
+    title: 'Servicio premium',
+    duration: '60 min',
+    price: 'Desde 49€',
+  },
+  {
+    title: 'Seguimiento / revisión',
+    duration: '45 min',
+    price: 'Desde 35€',
+  },
+]
+
+const demoSlots = ['09:30', '10:15', '11:00', '12:30', '16:00', '17:30']
+
+function BookingDemo() {
+  const [selectedService, setSelectedService] = useState(demoServices[0])
+  const [selectedSlot, setSelectedSlot] = useState(demoSlots[2])
+  const [confirmed, setConfirmed] = useState(false)
+
+  function handleBookingSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setConfirmed(true)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  return (
+    <main className="bookingPage">
+      <nav className="bookingNav">
+        <a href="/" className="brand">
+          <span className="brandMark">▦</span>
+          <span>CitaFlow</span>
+        </a>
+
+        <a href="/" className="bookingBack">Volver a la plataforma</a>
+      </nav>
+
+      <section className="bookingHero">
+        <div className="bookingBusiness">
+          <span className="bookingPowered">Página de reservas creada con CitaFlow</span>
+          <h1>Reserva online en Demo Negocio</h1>
+          <p>
+            Elige servicio, día y hora. Tu reserva quedará registrada y el negocio
+            recibirá la solicitud organizada.
+          </p>
+
+          <div className="bookingBusinessMeta">
+            <span>📍 Madrid</span>
+            <span>🕒 Lunes a viernes</span>
+            <span>💬 Confirmación automática</span>
+          </div>
+        </div>
+
+        <div className="bookingCard">
+          {confirmed ? (
+            <div className="bookingConfirmed">
+              <span>✅</span>
+              <h2>Solicitud recibida</h2>
+              <p>
+                Tu cita para <strong>{selectedService.title}</strong> a las{' '}
+                <strong>{selectedSlot}</strong> ha quedado registrada.
+              </p>
+              <small>
+                En una versión real, el cliente recibiría confirmación por WhatsApp
+                y el negocio vería la reserva en su agenda.
+              </small>
+              <button className="button primary" onClick={() => setConfirmed(false)}>
+                Hacer otra reserva
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleBookingSubmit}>
+              <span className="formStep">1. Elige servicio</span>
+
+              <div className="servicePicker">
+                {demoServices.map((service) => (
+                  <button
+                    type="button"
+                    className={selectedService.title === service.title ? 'serviceOption active' : 'serviceOption'}
+                    key={service.title}
+                    onClick={() => setSelectedService(service)}
+                  >
+                    <strong>{service.title}</strong>
+                    <span>{service.duration} · {service.price}</span>
+                  </button>
+                ))}
+              </div>
+
+              <span className="formStep">2. Elige hora</span>
+
+              <div className="slotPicker">
+                {demoSlots.map((slot) => (
+                  <button
+                    type="button"
+                    className={selectedSlot === slot ? 'slot active' : 'slot'}
+                    key={slot}
+                    onClick={() => setSelectedSlot(slot)}
+                  >
+                    {slot}
+                  </button>
+                ))}
+              </div>
+
+              <span className="formStep">3. Tus datos</span>
+
+              <div className="bookingInputs">
+                <input name="name" placeholder="Tu nombre" required />
+                <input name="phone" placeholder="WhatsApp" required />
+              </div>
+
+              <button className="button primary big" type="submit">
+                Confirmar solicitud
+              </button>
+
+              <small>
+                Demo visual. Próximo paso: conectar reservas reales con agenda,
+                WhatsApp y panel del negocio.
+              </small>
+            </form>
+          )}
+        </div>
+      </section>
+    </main>
+  )
+}
+
+
+
+const automationRules = [
+  {
+    title: 'Recordatorio automático',
+    text: 'Enviar WhatsApp antes de cada cita para reducir olvidos y ausencias.',
+    enabled: true,
+    detail: '15 min antes',
+  },
+  {
+    title: 'Confirmación de asistencia',
+    text: 'Pedir al cliente que confirme o cancele con una respuesta rápida.',
+    enabled: true,
+    detail: '2 h antes',
+  },
+  {
+    title: 'Lista de espera inteligente',
+    text: 'Si alguien cancela, avisar al siguiente cliente disponible.',
+    enabled: true,
+    detail: 'Automático',
+  },
+  {
+    title: 'Reactivación de clientes',
+    text: 'Contactar clientes que llevan tiempo sin reservar.',
+    enabled: false,
+    detail: 'Cada 45 días',
+  },
+]
+
+const whatsappTemplates = [
+  {
+    name: 'Recordatorio de cita',
+    body: 'Hola {cliente}, te recordamos tu cita hoy a las {hora}. Responde CONFIRMAR o CANCELAR.',
+  },
+  {
+    name: 'Hueco disponible',
+    body: 'Hola {cliente}, se ha liberado una cita hoy a las {hora}. ¿Quieres reservarla?',
+  },
+  {
+    name: 'Reactivación',
+    body: 'Hola {cliente}, hace tiempo que no te vemos. Tenemos huecos disponibles esta semana.',
+  },
+]
+
+const panelServices = [
+  'Consulta inicial · 30 min',
+  'Servicio estándar · 45 min',
+  'Servicio premium · 60 min',
+]
+
+function PanelDemo() {
+  const [activeTemplate, setActiveTemplate] = useState(whatsappTemplates[0])
+  const [rules, setRules] = useState(automationRules)
+
+  function toggleRule(title: string) {
+    setRules((current) =>
+      current.map((rule) =>
+        rule.title === title ? { ...rule, enabled: !rule.enabled } : rule
+      )
+    )
+  }
+
+  return (
+    <main className="panelDemoPage">
+      <aside className="panelSidebar">
+        <a href="/" className="brand panelBrand">
+          <span className="brandMark">▦</span>
+          <span>CitaFlow</span>
+        </a>
+
+        <nav className="panelMenu">
+          <a className="active" href="#agenda">Agenda</a>
+          <a href="#automatismos">Automatismos</a>
+          <a href="#plantillas">Plantillas</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#qr">QR y enlace</a>
+        </nav>
+
+        <div className="panelMini">
+          <span>Demo panel</span>
+          <strong>Negocio con cita previa</strong>
+          <p>Vista interna para configurar agenda, mensajes y automatismos.</p>
+        </div>
+      </aside>
+
+      <section className="panelMain">
+        <div className="panelTopbar">
+          <div>
+            <span className="eyebrow">Panel demo</span>
+            <h1>Automatiza recordatorios, cancelaciones y huecos libres.</h1>
+          </div>
+
+          <a className="button secondary" href="/">Ver landing</a>
+        </div>
+
+        <div className="panelStats">
+          <article>
+            <span>Citas hoy</span>
+            <strong>12</strong>
+            <p>3 pendientes de confirmar</p>
+          </article>
+
+          <article>
+            <span>Ausencias evitadas</span>
+            <strong>8</strong>
+            <p>Últimos 30 días</p>
+          </article>
+
+          <article>
+            <span>Huecos recuperados</span>
+            <strong>5</strong>
+            <p>Por lista de espera</p>
+          </article>
+
+          <article>
+            <span>Tiempo ahorrado</span>
+            <strong>4h</strong>
+            <p>Estimación semanal</p>
+          </article>
+        </div>
+
+        <div className="panelGrid">
+          <section className="panelCard large" id="automatismos">
+            <div className="panelCardHeader">
+              <div>
+                <span>Automatismos</span>
+                <h2>Reglas activas de agenda</h2>
+              </div>
+              <strong>{rules.filter((rule) => rule.enabled).length} activos</strong>
+            </div>
+
+            <div className="rulesList">
+              {rules.map((rule) => (
+                <button
+                  className={rule.enabled ? 'ruleItem enabled' : 'ruleItem'}
+                  key={rule.title}
+                  onClick={() => toggleRule(rule.title)}
+                  type="button"
+                >
+                  <div>
+                    <strong>{rule.title}</strong>
+                    <p>{rule.text}</p>
+                  </div>
+
+                  <span>{rule.enabled ? 'Activo' : 'Pausado'}</span>
+                </button>
+              ))}
+            </div>
+          </section>
+
+          <section className="panelCard" id="agenda">
+            <div className="panelCardHeader">
+              <div>
+                <span>Flujo automático</span>
+                <h2>Cancelación recuperada</h2>
+              </div>
+            </div>
+
+            <div className="miniTimeline">
+              <div>
+                <span>15:45</span>
+                <p>Recordatorio enviado por WhatsApp.</p>
+              </div>
+              <div>
+                <span>15:47</span>
+                <p>Cliente responde: “No puedo asistir”.</p>
+              </div>
+              <div>
+                <span>15:48</span>
+                <p>CitaFlow avisa a lista de espera.</p>
+              </div>
+              <div>
+                <span>15:50</span>
+                <p>Nuevo cliente confirma el hueco.</p>
+              </div>
+            </div>
+          </section>
+
+          <section className="panelCard large" id="plantillas">
+            <div className="panelCardHeader">
+              <div>
+                <span>Plantillas WhatsApp</span>
+                <h2>Mensajes editables</h2>
+              </div>
+            </div>
+
+            <div className="templateLayout">
+              <div className="templateTabs">
+                {whatsappTemplates.map((template) => (
+                  <button
+                    className={activeTemplate.name === template.name ? 'active' : ''}
+                    key={template.name}
+                    type="button"
+                    onClick={() => setActiveTemplate(template)}
+                  >
+                    {template.name}
+                  </button>
+                ))}
+              </div>
+
+              <div className="templateEditor">
+                <label>
+                  Nombre de plantilla
+                  <input value={activeTemplate.name} readOnly />
+                </label>
+
+                <label>
+                  Mensaje
+                  <textarea value={activeTemplate.body} readOnly rows={5} />
+                </label>
+
+                <small>
+                  Variables disponibles: {'{cliente}'}, {'{hora}'}, {'{servicio}'}, {'{negocio}'}.
+                </small>
+              </div>
+            </div>
+          </section>
+
+          <section className="panelCard" id="servicios">
+            <div className="panelCardHeader">
+              <div>
+                <span>Configuración</span>
+                <h2>Servicios y horarios</h2>
+              </div>
+            </div>
+
+            <div className="serviceList">
+              {panelServices.map((service) => (
+                <span key={service}>{service}</span>
+              ))}
+            </div>
+
+            <div className="scheduleBox">
+              <strong>Lunes a viernes</strong>
+              <p>09:00 - 14:00 · 16:00 - 20:00</p>
+            </div>
+          </section>
+
+          <section className="panelCard qrPanel" id="qr">
+            <div className="panelCardHeader">
+              <div>
+                <span>QR y enlace</span>
+                <h2>Entrada de reservas</h2>
+              </div>
+            </div>
+
+            <div className="qrPanelContent">
+              <div className="smallQr">
+                <i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i>
+              </div>
+
+              <div>
+                <strong>citaflow.app/r/tu-negocio</strong>
+                <p>Para Instagram, WhatsApp, mostrador, tarjetas o recepción.</p>
+              </div>
+            </div>
+          </section>
+
+          <section className="panelCard">
+            <div className="panelCardHeader">
+              <div>
+                <span>Próximo módulo</span>
+                <h2>Asistente de agenda</h2>
+              </div>
+            </div>
+
+            <p className="panelText">
+              La siguiente versión podrá interpretar respuestas del cliente,
+              proponer horarios y mover citas con supervisión del negocio.
+            </p>
+          </section>
+        </div>
+      </section>
+    </main>
+  )
+}
+
+
 function App() {
+  if (window.location.pathname === '/panel-demo') {
+    return <PanelDemo />
+  }
+
+  if (window.location.pathname.startsWith('/r/')) {
+    return <BookingDemo />
+  }
+
   function handleDemoSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
@@ -132,9 +554,9 @@ function App() {
 
         <div className="heroGrid">
           <div className="heroCopy">
-            <span className="eyebrow">Reservas para negocios con cita previa</span>
+            <span className="eyebrow">Automatización de agenda para negocios con cita previa</span>
 
-            <h1>Crea tu página de reservas con QR.</h1>
+            <h1>Automatiza tu agenda y reduce huecos perdidos.</h1>
 
             <p className="heroText">
               Agenda online, recordatorios por WhatsApp y seguimiento automático
@@ -148,8 +570,8 @@ function App() {
 
             <div className="trustRow">
               <span>Sin permanencia</span>
-              <span>Setup rápido</span>
-              <span>Para negocios con cita previa</span>
+              <span>Automatismos reales</span>
+              <span>Para agendas con citas</span>
             </div>
           </div>
 
@@ -201,7 +623,7 @@ function App() {
       <section className="problem section">
         <div className="sectionHeading">
           <span className="eyebrow">El problema</span>
-          <h2>¿Pierdes tiempo gestionando citas manualmente?</h2>
+          <h2>¿Cuánto tiempo pierde tu negocio contestando, confirmando y recolocando citas?</h2>
         </div>
 
         <div className="painGrid">
@@ -214,7 +636,7 @@ function App() {
       <section className="trustSection section">
         <div className="trustPanel">
           <div>
-            <span className="eyebrow">Para negocios con cita previa</span>
+            <span className="eyebrow">Para agendas con citas</span>
             <h2>Reservas online para cualquier negocio que atiende con agenda.</h2>
           </div>
 
@@ -257,15 +679,53 @@ function App() {
         </div>
       </section>
 
+      <section className="automationSection section">
+        <div className="automationCard">
+          <div className="automationCopy">
+            <span className="eyebrow">El automatismo que sí duele</span>
+            <h2>Si alguien cancela, CitaFlow intenta rellenar el hueco.</h2>
+            <p>
+              El negocio no tiene que dejar las tijeras, la consulta o el trabajo
+              para coger el teléfono, revisar la libreta y llamar al siguiente.
+              CitaFlow automatiza el flujo.
+            </p>
+          </div>
+
+          <div className="automationTimeline">
+            <article>
+              <span>15:45</span>
+              <strong>Recordatorio automático</strong>
+              <p>El cliente recibe un WhatsApp antes de la cita.</p>
+            </article>
+
+            <article>
+              <span>15:47</span>
+              <strong>El cliente cancela</strong>
+              <p>Responde que no puede asistir. El hueco queda libre.</p>
+            </article>
+
+            <article>
+              <span>15:48</span>
+              <strong>Lista de espera</strong>
+              <p>CitaFlow avisa al siguiente cliente disponible.</p>
+            </article>
+
+            <article>
+              <span>15:50</span>
+              <strong>Hueco recuperado</strong>
+              <p>Otro cliente confirma y la agenda se actualiza.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="platformSection section">
         <div className="platformCard">
           <div className="platformCopy">
             <span className="eyebrow">Nuestra plataforma</span>
-            <h2>Tu negocio dentro de CitaFlow, sin crear webs a medida.</h2>
+            <h2>CitaFlow atiende la agenda mientras tú trabajas.</h2>
             <p>
-              CitaFlow es la marca y la plataforma. Cada negocio configura su
-              perfil, servicios, horarios y disponibilidad, y obtiene una página
-              de reservas lista para compartir.
+              El objetivo no es tener otra web más. El objetivo es que CitaFlow confirme citas, recuerde reservas, detecte cancelaciones y ayude a rellenar huecos automáticamente.
             </p>
           </div>
 
@@ -301,7 +761,7 @@ function App() {
         <div className="qrCard">
           <div className="qrCopy">
             <span className="eyebrow">QR + agenda online</span>
-            <h2>Tu página de reservas siempre disponible.</h2>
+            <h2>Un enlace y QR para que tus clientes entren directos a reservar.</h2>
             <p>
               Cada negocio crea su página dentro de CitaFlow con su propio QR y enlace. El cliente
               escanea, elige servicio, día y hora, y CitaFlow actualiza la agenda
