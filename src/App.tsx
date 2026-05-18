@@ -548,6 +548,7 @@ function App() {
           <div className="navLinks">
             <a href="#producto">Producto</a>
             <a href="#como-funciona">Cómo funciona</a>
+            <a href="/panel-demo">Panel demo</a>
             <a href="#demo" className="navButton">Pedir demo</a>
           </div>
         </nav>
@@ -565,7 +566,7 @@ function App() {
 
             <div className="heroActions">
               <a className="button primary" href="#demo">Solicitar demo gratuita</a>
-              <a className="button secondary" href="#como-funciona">Ver cómo funciona</a>
+              <a className="button secondary" href="/panel-demo">Ver panel demo</a>
             </div>
 
             <div className="trustRow">
