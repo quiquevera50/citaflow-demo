@@ -11,7 +11,7 @@ const pains = [
 const features = [
   {
     icon: '📲',
-    title: 'QR de reservas',
+    title: 'Página + QR de reservas',
     text: 'Cada negocio tiene su QR para que los clientes reserven al instante.',
   },
   {
@@ -134,7 +134,7 @@ function App() {
           <div className="heroCopy">
             <span className="eyebrow">Reservas para negocios con cita previa</span>
 
-            <h1>Consigue más citas y automatiza tu negocio.</h1>
+            <h1>Crea tu página de reservas con QR.</h1>
 
             <p className="heroText">
               Agenda online, recordatorios por WhatsApp y seguimiento automático
@@ -257,13 +257,53 @@ function App() {
         </div>
       </section>
 
+      <section className="platformSection section">
+        <div className="platformCard">
+          <div className="platformCopy">
+            <span className="eyebrow">Nuestra plataforma</span>
+            <h2>Tu negocio dentro de CitaFlow, sin crear webs a medida.</h2>
+            <p>
+              CitaFlow es la marca y la plataforma. Cada negocio configura su
+              perfil, servicios, horarios y disponibilidad, y obtiene una página
+              de reservas lista para compartir.
+            </p>
+          </div>
+
+          <div className="platformSteps">
+            <article>
+              <span>01</span>
+              <strong>Configura tu negocio</strong>
+              <p>Nombre, sector, servicios, precios, duración y horarios.</p>
+            </article>
+
+            <article>
+              <span>02</span>
+              <strong>Obtén tu enlace y QR</strong>
+              <p>Una página de reservas dentro de CitaFlow para tus clientes.</p>
+            </article>
+
+            <article>
+              <span>03</span>
+              <strong>Recibe reservas online</strong>
+              <p>El cliente elige servicio, día y hora sin llamadas ni mensajes eternos.</p>
+            </article>
+
+            <article>
+              <span>04</span>
+              <strong>Gestiona tu agenda</strong>
+              <p>Reservas, clientes, confirmaciones y recordatorios desde un panel.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="qrSection section">
         <div className="qrCard">
           <div className="qrCopy">
             <span className="eyebrow">QR + agenda online</span>
-            <h2>Tu negocio siempre abierto para recibir reservas.</h2>
+            <h2>Tu página de reservas siempre disponible.</h2>
             <p>
-              Cada negocio tendrá su propio QR y enlace de reservas. El cliente
+              Cada negocio crea su página dentro de CitaFlow con su propio QR y enlace. El cliente
               escanea, elige servicio, día y hora, y CitaFlow actualiza la agenda
               automáticamente.
             </p>
@@ -275,7 +315,7 @@ function App() {
             </div>
           </div>
 
-          <div className="qrVisual" aria-label="Vista previa del QR de reservas de CitaFlow">
+          <div className="qrVisual" aria-label="Vista previa del Página + QR de reservas de CitaFlow">
             <div className="qrMock realisticQR" aria-hidden="true">
               <div className="finder tl"><span></span></div>
               <div className="finder tr"><span></span></div>
@@ -304,7 +344,7 @@ function App() {
             </div>
 
             <div className="bookingMini">
-              <span>citaflow.app/demo/negocio</span>
+              <span>citaflow.app/r/tu-negocio</span>
               <strong>Reserva online</strong>
               <p>Servicio · Día · Hora · Confirmación</p>
               <em>Escanea para reservar</em>
