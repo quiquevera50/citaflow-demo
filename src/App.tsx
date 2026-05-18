@@ -292,6 +292,7 @@ function PanelDemo() {
         </a>
 
         <nav className="panelMenu">
+          <a href="/">← Inicio</a>
           <a className="active" href="#agenda">Agenda</a>
           <a href="#automatismos">Automatismos</a>
           <a href="#plantillas">Plantillas</a>
@@ -313,7 +314,7 @@ function PanelDemo() {
             <h1>Automatiza recordatorios, cancelaciones y huecos libres.</h1>
           </div>
 
-          <a className="button secondary" href="/">Ver landing</a>
+          <a className="button secondary panelBackButton" href="/">← Volver al inicio</a>
         </div>
 
         <div className="panelStats">
@@ -548,7 +549,7 @@ function App() {
           <div className="navLinks">
             <a href="#producto">Producto</a>
             <a href="#como-funciona">Cómo funciona</a>
-            <a href="/panel-demo">Panel demo</a>
+            <a href="/panel-demo" className="demoNavLink">Mostrar demo</a>
             <a href="#demo" className="navButton">Pedir demo</a>
           </div>
         </nav>
@@ -566,8 +567,14 @@ function App() {
 
             <div className="heroActions">
               <a className="button primary" href="#demo">Solicitar demo gratuita</a>
-              <a className="button secondary" href="/panel-demo">Ver panel demo</a>
+              <a className="button secondary demoHeroButton" href="/panel-demo">Mostrar demo</a>
             </div>
+
+            <a className="heroDemoAccess" href="/panel-demo">
+              <span>Ver producto demo</span>
+              <strong>Panel de automatismos, plantillas WhatsApp y huecos recuperados</strong>
+              <em>Entrar ahora →</em>
+            </a>
 
             <div className="trustRow">
               <span>Sin permanencia</span>

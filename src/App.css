@@ -2693,3 +2693,699 @@ h1 {
     justify-self: start;
   }
 }
+
+/* Panel demo visual premium polish */
+
+.panelDemoPage {
+  background:
+    radial-gradient(circle at 78% 4%, rgba(231, 43, 124, 0.22), transparent 32%),
+    radial-gradient(circle at 18% 22%, rgba(255, 224, 138, 0.22), transparent 28%),
+    linear-gradient(180deg, #fff1f8 0%, #fffafd 48%, #fff6fb 100%);
+}
+
+.panelSidebar {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(231, 43, 124, 0.12), transparent 28%),
+    rgba(255, 255, 255, 0.82);
+  box-shadow: 18px 0 70px rgba(88, 45, 71, 0.08);
+}
+
+.panelTopbar {
+  position: relative;
+  padding: 34px;
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at 86% 10%, rgba(231, 43, 124, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 242, 248, 0.94));
+  border: 1px solid rgba(23, 16, 25, 0.06);
+  box-shadow: 0 24px 80px rgba(88, 45, 71, 0.1);
+}
+
+.panelTopbar::after {
+  content: "WhatsApp · Agenda · Lista de espera";
+  position: absolute;
+  right: 34px;
+  bottom: 28px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: var(--pink-dark);
+  background: white;
+  border: 1px solid rgba(231, 43, 124, 0.12);
+  font-size: 12px;
+  font-weight: 950;
+  box-shadow: 0 14px 36px rgba(88, 45, 71, 0.1);
+}
+
+.panelStats article {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.panelStats article:hover,
+.panelCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 28px 80px rgba(88, 45, 71, 0.14);
+}
+
+.panelStats article::after {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  right: -28px;
+  top: -28px;
+  border-radius: 999px;
+  background: rgba(231, 43, 124, 0.1);
+}
+
+.panelStats strong {
+  color: var(--ink);
+}
+
+.panelCard {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.panelCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), transparent 42%);
+}
+
+.panelCardHeader {
+  position: relative;
+  z-index: 1;
+}
+
+.rulesList,
+.templateLayout,
+.miniTimeline,
+.serviceList,
+.qrPanelContent,
+.panelText {
+  position: relative;
+  z-index: 1;
+}
+
+.ruleItem {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.ruleItem:hover {
+  transform: translateX(3px);
+  border-color: rgba(231, 43, 124, 0.22);
+}
+
+.ruleItem.enabled {
+  background:
+    radial-gradient(circle at 96% 18%, rgba(231, 43, 124, 0.12), transparent 28%),
+    #fff2f8;
+}
+
+.ruleItem.enabled > span {
+  background: linear-gradient(135deg, var(--pink), #f04b98);
+  box-shadow: 0 12px 28px rgba(231, 43, 124, 0.22);
+}
+
+.miniTimeline div {
+  position: relative;
+  padding-left: 18px;
+}
+
+.miniTimeline div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 4px;
+  border-radius: 999px;
+  background: var(--pink);
+}
+
+.templateEditor {
+  padding: 18px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #fffafd, #ffffff);
+  border: 1px solid rgba(23, 16, 25, 0.06);
+}
+
+.templateTabs button {
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.templateTabs button:hover {
+  transform: translateX(3px);
+}
+
+.templateTabs button.active {
+  background:
+    radial-gradient(circle at 90% 15%, rgba(231, 43, 124, 0.28), transparent 32%),
+    var(--dark);
+  box-shadow: 0 16px 38px rgba(23, 16, 25, 0.16);
+}
+
+.qrPanel {
+  background:
+    radial-gradient(circle at 90% 14%, rgba(231, 43, 124, 0.14), transparent 34%),
+    rgba(255, 255, 255, 0.9);
+}
+
+.smallQr {
+  box-shadow: 0 18px 42px rgba(23, 16, 25, 0.2);
+}
+
+.panelMenu a:first-child {
+  color: var(--pink-dark);
+  background: #fff2f8;
+  border: 1px solid rgba(231, 43, 124, 0.12);
+}
+
+.panelMini {
+  background:
+    radial-gradient(circle at 85% 12%, rgba(231, 43, 124, 0.34), transparent 38%),
+    linear-gradient(135deg, #151017 0%, #26172a 100%);
+  box-shadow: 0 22px 60px rgba(23, 16, 25, 0.22);
+}
+
+@media (max-width: 760px) {
+  .panelTopbar {
+    padding: 24px;
+    border-radius: 30px;
+  }
+
+  .panelTopbar::after {
+    position: static;
+    display: inline-flex;
+    margin-top: 18px;
+  }
+}
+
+/* Panel demo visual premium polish */
+
+.panelDemoPage {
+  background:
+    radial-gradient(circle at 78% 4%, rgba(231, 43, 124, 0.22), transparent 32%),
+    radial-gradient(circle at 18% 22%, rgba(255, 224, 138, 0.22), transparent 28%),
+    linear-gradient(180deg, #fff1f8 0%, #fffafd 48%, #fff6fb 100%);
+}
+
+.panelSidebar {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(231, 43, 124, 0.12), transparent 28%),
+    rgba(255, 255, 255, 0.82);
+  box-shadow: 18px 0 70px rgba(88, 45, 71, 0.08);
+}
+
+.panelTopbar {
+  position: relative;
+  padding: 34px;
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at 86% 10%, rgba(231, 43, 124, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 242, 248, 0.94));
+  border: 1px solid rgba(23, 16, 25, 0.06);
+  box-shadow: 0 24px 80px rgba(88, 45, 71, 0.1);
+}
+
+.panelTopbar::after {
+  content: "WhatsApp · Agenda · Lista de espera";
+  position: absolute;
+  right: 34px;
+  bottom: 28px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: var(--pink-dark);
+  background: white;
+  border: 1px solid rgba(231, 43, 124, 0.12);
+  font-size: 12px;
+  font-weight: 950;
+  box-shadow: 0 14px 36px rgba(88, 45, 71, 0.1);
+}
+
+.panelStats article {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.panelStats article:hover,
+.panelCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 28px 80px rgba(88, 45, 71, 0.14);
+}
+
+.panelStats article::after {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  right: -28px;
+  top: -28px;
+  border-radius: 999px;
+  background: rgba(231, 43, 124, 0.1);
+}
+
+.panelStats strong {
+  color: var(--ink);
+}
+
+.panelCard {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.panelCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), transparent 42%);
+}
+
+.panelCardHeader {
+  position: relative;
+  z-index: 1;
+}
+
+.rulesList,
+.templateLayout,
+.miniTimeline,
+.serviceList,
+.qrPanelContent,
+.panelText {
+  position: relative;
+  z-index: 1;
+}
+
+.ruleItem {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.ruleItem:hover {
+  transform: translateX(3px);
+  border-color: rgba(231, 43, 124, 0.22);
+}
+
+.ruleItem.enabled {
+  background:
+    radial-gradient(circle at 96% 18%, rgba(231, 43, 124, 0.12), transparent 28%),
+    #fff2f8;
+}
+
+.ruleItem.enabled > span {
+  background: linear-gradient(135deg, var(--pink), #f04b98);
+  box-shadow: 0 12px 28px rgba(231, 43, 124, 0.22);
+}
+
+.miniTimeline div {
+  position: relative;
+  padding-left: 18px;
+}
+
+.miniTimeline div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 4px;
+  border-radius: 999px;
+  background: var(--pink);
+}
+
+.templateEditor {
+  padding: 18px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #fffafd, #ffffff);
+  border: 1px solid rgba(23, 16, 25, 0.06);
+}
+
+.templateTabs button {
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.templateTabs button:hover {
+  transform: translateX(3px);
+}
+
+.templateTabs button.active {
+  background:
+    radial-gradient(circle at 90% 15%, rgba(231, 43, 124, 0.28), transparent 32%),
+    var(--dark);
+  box-shadow: 0 16px 38px rgba(23, 16, 25, 0.16);
+}
+
+.qrPanel {
+  background:
+    radial-gradient(circle at 90% 14%, rgba(231, 43, 124, 0.14), transparent 34%),
+    rgba(255, 255, 255, 0.9);
+}
+
+.smallQr {
+  box-shadow: 0 18px 42px rgba(23, 16, 25, 0.2);
+}
+
+.panelMenu a:first-child {
+  color: var(--pink-dark);
+  background: #fff2f8;
+  border: 1px solid rgba(231, 43, 124, 0.12);
+}
+
+.panelMini {
+  background:
+    radial-gradient(circle at 85% 12%, rgba(231, 43, 124, 0.34), transparent 38%),
+    linear-gradient(135deg, #151017 0%, #26172a 100%);
+  box-shadow: 0 22px 60px rgba(23, 16, 25, 0.22);
+}
+
+@media (max-width: 760px) {
+  .panelTopbar {
+    padding: 24px;
+    border-radius: 30px;
+  }
+
+  .panelTopbar::after {
+    position: static;
+    display: inline-flex;
+    margin-top: 18px;
+  }
+}
+
+/* Strong demo access from landing */
+
+.demoNavLink {
+  padding: 12px 18px;
+  border-radius: 999px;
+  color: var(--pink-dark) !important;
+  background: #fff2f8;
+  border: 1px solid rgba(231, 43, 124, 0.18);
+  box-shadow: 0 12px 30px rgba(231, 43, 124, 0.1);
+}
+
+.demoHeroButton {
+  color: white;
+  background: var(--dark);
+  border: 0;
+  box-shadow: 0 18px 40px rgba(23, 16, 25, 0.2);
+}
+
+.heroDemoAccess {
+  width: min(100%, 620px);
+  display: grid;
+  gap: 7px;
+  margin-top: 20px;
+  padding: 20px 22px;
+  border-radius: 26px;
+  color: white;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(231, 43, 124, 0.42), transparent 34%),
+    linear-gradient(135deg, #151017 0%, #26172a 100%);
+  box-shadow: 0 24px 70px rgba(23, 16, 25, 0.22);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.heroDemoAccess:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 90px rgba(23, 16, 25, 0.26);
+}
+
+.heroDemoAccess span {
+  color: #ff8ebc;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.heroDemoAccess strong {
+  max-width: 520px;
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.heroDemoAccess em {
+  color: white;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 950;
+}
+
+/* Bigger, clearer panel demo */
+
+.panelDemoPage {
+  grid-template-columns: 320px 1fr;
+}
+
+.panelSidebar {
+  padding: 30px;
+}
+
+.panelMenu {
+  gap: 11px;
+}
+
+.panelMenu a {
+  padding: 16px 18px;
+  border-radius: 18px;
+  font-size: 16px;
+}
+
+.homePanelLink {
+  color: white !important;
+  background: var(--dark) !important;
+  border: 0 !important;
+}
+
+.panelMain {
+  padding: 42px;
+}
+
+.panelTopbar {
+  padding: 42px;
+  margin-bottom: 32px;
+}
+
+.panelTopbar h1 {
+  max-width: 980px;
+  font-size: clamp(54px, 5.8vw, 86px);
+  line-height: 1.02;
+}
+
+.panelBackButton {
+  min-width: 190px;
+  min-height: 58px;
+  font-size: 15px;
+}
+
+.panelStats {
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.panelStats article {
+  padding: 28px;
+  border-radius: 30px;
+}
+
+.panelStats span,
+.panelCardHeader span {
+  font-size: 13px;
+}
+
+.panelStats strong {
+  font-size: 46px;
+}
+
+.panelStats p {
+  font-size: 15px;
+}
+
+.panelGrid {
+  gap: 22px;
+}
+
+.panelCard {
+  padding: 30px;
+  border-radius: 34px;
+}
+
+.panelCardHeader h2 {
+  font-size: 34px;
+}
+
+.panelCardHeader > strong {
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+.ruleItem {
+  padding: 22px;
+  border-radius: 24px;
+}
+
+.ruleItem strong {
+  font-size: 21px;
+}
+
+.ruleItem p {
+  font-size: 15px;
+}
+
+.ruleItem > span {
+  padding: 10px 13px;
+  font-size: 13px;
+}
+
+.miniTimeline div {
+  grid-template-columns: 76px 1fr;
+  padding: 19px;
+}
+
+.miniTimeline span {
+  font-size: 15px;
+}
+
+.miniTimeline p {
+  font-size: 15px;
+}
+
+.templateLayout {
+  grid-template-columns: 240px 1fr;
+}
+
+.templateTabs button {
+  padding: 16px;
+  font-size: 15px;
+}
+
+.templateEditor {
+  padding: 22px;
+}
+
+.templateEditor input,
+.templateEditor textarea {
+  font-size: 16px;
+}
+
+.serviceList span,
+.scheduleBox {
+  padding: 17px;
+  font-size: 16px;
+}
+
+.qrPanelContent {
+  grid-template-columns: 116px 1fr;
+}
+
+.smallQr {
+  width: 116px;
+  height: 116px;
+}
+
+.qrPanelContent strong {
+  font-size: 18px;
+}
+
+.qrPanelContent p,
+.scheduleBox p,
+.panelText {
+  font-size: 15px;
+}
+
+.panelMini {
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
+  padding: 22px;
+}
+
+.panelMini strong {
+  font-size: 22px;
+}
+
+.panelMini p {
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .panelDemoPage {
+    grid-template-columns: 1fr;
+  }
+
+  .panelMain {
+    padding: 28px;
+  }
+
+  .panelTopbar h1 {
+    font-size: clamp(44px, 8vw, 68px);
+  }
+}
+
+@media (max-width: 720px) {
+  .demoNavLink {
+    display: inline-flex !important;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .heroDemoAccess {
+    padding: 18px;
+  }
+
+  .heroDemoAccess strong {
+    font-size: 17px;
+  }
+
+  .panelMain {
+    padding: 18px 14px;
+  }
+
+  .panelTopbar {
+    padding: 24px;
+  }
+
+  .panelTopbar h1 {
+    font-size: clamp(40px, 12vw, 58px);
+  }
+
+  .panelCard {
+    padding: 22px;
+  }
+
+  .panelCardHeader h2 {
+    font-size: 28px;
+  }
+
+  .templateLayout,
+  .qrPanelContent {
+    grid-template-columns: 1fr;
+  }
+}
